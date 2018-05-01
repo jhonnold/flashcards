@@ -7,7 +7,8 @@
     "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
-    "prestart": "npm run -s build"
+    "prestart": "npm run -s build",
+    "migrate": "DATABASE_URL=postgres://postgres:@localhost:5432/flashcards node-pg-migrate"
   },
   "repository": "https://github.com/jhonnold/flashcards",
   "author": "Jay Honnold",
@@ -18,6 +19,8 @@
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "morgan": "^1.8.0",
+    "node-pg-migrate": "^3.1.0",
+    "pg": "^7.4.1",
     "resource-router-middleware": "^0.6.0"
   },
   "devDependencies": {
