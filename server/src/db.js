@@ -1,4 +1,12 @@
-export default callback => {
-	// connect to a database if needed, then pass it to `callback`:
-	callback();
-}
+import { Pool } from 'pg';
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'flashcards',
+  port: 5432,
+});
+
+export default (callback) => {
+  callback(pool);
+};
