@@ -13,15 +13,15 @@ export default ({ config, db }) =>
           if (rows.length === 0) callback('Not Found');
           callback(null, rows[0]);
         })
-        .catch(err => callback(err));
+        .catch(({ message }) => callback(message));
     },
 
     // GET `/api/sets`
-    index({ params }, res) {
+    index(_, res) {
       db
         .query('select * from sets')
         .then(({ rows }) => res.json(rows))
-        .catch(err => res.send(err));
+        .catch(({ message }) => res.status(500).send(message));
     },
 
     // POST `/api/sets`
@@ -33,7 +33,7 @@ export default ({ config, db }) =>
           body.description,
         ])
         .then(({ rows }) => res.json(rows[0]))
-        .catch(err => res.send(err));
+        .catch(({ message }) => res.status(500).send(message));
     },
 
     // GET `/api/sets/:id`
@@ -53,7 +53,7 @@ export default ({ config, db }) =>
       query.push('set');
 
       query.push(Object.keys(permitted)
-        .map((k, i) => `${k} = ($${i + 1})`)
+        .map((k, i) => `"${k}" = ($${i + 1})`)
         .join(', '));
 
       query.push(`where id = ${set.id} returning *`);
@@ -61,7 +61,7 @@ export default ({ config, db }) =>
       db
         .query(query.join(' '), Object.values(permitted))
         .then(({ rows }) => res.json(rows[0]))
-        .catch(err => res.send(err));
+        .catch(({ message }) => res.status(500).send(message));
     },
 
     // DELETE `/api/sets/:id`
@@ -69,6 +69,6 @@ export default ({ config, db }) =>
       db
         .query('delete from sets where id = $1', [set.id])
         .then(() => res.status(204).send())
-        .catch(err => res.send(err));
+        .catch(({ message }) => res.status(500).send(message));
     },
   });
