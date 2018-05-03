@@ -72,8 +72,8 @@ export default ({ config, db }) =>
     },
   }).post('/batch', ({ body }, res) => {
     const flashcards = body.flashcards.map((f, i) => ({
-      ...f,
       order: i + 1,
+      ...f,
     }));
 
     let query = 'insert into flashcards ("setId", frontside, backside, "order") values ';
