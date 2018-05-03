@@ -12,7 +12,7 @@ const app = express();
 app.server = http.createServer(app);
 
 // logger
-app.use(morgan('dev'));
+if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 
 // 3rd party middleware
 app.use(cors({

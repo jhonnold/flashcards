@@ -52,7 +52,7 @@ export default ({ config, db }) =>
       query.push('set');
 
       query.push(Object.keys(permitted)
-        .map((k, i) => `"${k}" = ($${i + 1})`)
+        .map((k, i) => `"${k}" = $${i + 1}`)
         .join(', '));
 
       query.push(`where id = ${flashcard.id} returning *`);

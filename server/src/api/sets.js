@@ -26,6 +26,11 @@ export default ({ config, db }) =>
 
     // POST `/api/sets`
     create({ body }, res) {
+      if (!(body.creator && body.name && body.description)) {
+        res.status(400).send('Please supply a creator, name, and a description');
+        return;
+      }
+
       db
         .query('insert into sets (creator, name, description) values ($1, $2, $3) returning *', [
           body.creator,
@@ -53,7 +58,7 @@ export default ({ config, db }) =>
       query.push('set');
 
       query.push(Object.keys(permitted)
-        .map((k, i) => `"${k}" = ($${i + 1})`)
+        .map((k, i) => `"${k}" = $${i + 1}`)
         .join(', '));
 
       query.push(`where id = ${set.id} returning *`);
