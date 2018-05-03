@@ -18,8 +18,21 @@ export default ({ config, db }) =>
 
     // GET `/api/flashcards`
     index({ query }, res) {
+      let queryString = 'select * from flashcards';
+      const queryParams = [];
+
+      if (query.setId) {
+        queryParams.push(query.setId);
+        queryString += ` where "setId" = $${queryParams.length}`;
+      }
+
+      if (query.limit) {
+        queryParams.push(query.limit);
+        queryString += ` limit $${queryParams.length}`;
+      }
+
       db
-        .query('select * from flashcards')
+        .query(queryString, queryParams)
         .then(({ rows }) => res.json(rows))
         .catch(({ message }) => res.status(500).send(message));
     },

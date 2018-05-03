@@ -71,7 +71,7 @@ returns: 204
 
 #### Get all flashcards
 ```javascript
-GET /api/flashcards
+GET /api/flashcards // Supported query params are setId and limit
 returns: [
   {
     id: integer,
