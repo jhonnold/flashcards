@@ -4,7 +4,7 @@ This is a basic RESTful server.
 
 ## Sets Endpoints
 
-#### Get all sets 
+#### Get all sets
 ```javascript
 GET /api/sets
 returns: [
@@ -126,7 +126,7 @@ params: {
       setId: integer,     // Required
       frontside: string,
       backside: string,
-      order: integer,
+      order: integer,     // Required
     },
     ...
   ]
@@ -161,7 +161,7 @@ PUT /api/flashcards/:id
 params: {   
   frontside: string,
   backside: string,
-  order: integer, 
+  order: integer,
 }
 returns: {
   id: integer,

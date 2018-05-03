@@ -22,9 +22,7 @@ describe('Set Tests', () => {
     request(app)
       .get('/api/sets')
       .expect(200)
-      .expect((res) => {
-        assert.isArray(res.body);
-      })
+      .expect(({ body }) => assert.isArray(body))
       .end(done);
   });
 
@@ -53,9 +51,7 @@ describe('Set Tests', () => {
     request(app)
       .get(`/api/sets/${createdSet.id}`)
       .expect(200)
-      .expect(({ body }) => {
-        assert.deepEqual(body, createdSet);
-      })
+      .expect(({ body }) => assert.deepEqual(body, createdSet))
       .end(done);
   });
 
@@ -78,9 +74,7 @@ describe('Set Tests', () => {
     request(app)
       .get(`/api/sets/${createdSet.id}`)
       .expect(200)
-      .expect(({ body }) => {
-        assert.deepEqual(body, createdSet);
-      })
+      .expect(({ body }) => assert.deepEqual(body, createdSet))
       .end(done);
   });
 

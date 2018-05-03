@@ -26,6 +26,11 @@ export default ({ config, db }) =>
 
     // POST `/api/flashcards`
     create({ body }, res) {
+      if (!(body.setId && body.order)) {
+        res.status(400).send('Please supply at least a set and order!');
+        return;
+      }
+
       db
         .query(
           'insert into flashcards ("setId", frontside, backside, "order") values ($1, $2, $3, $4) returning *',
@@ -71,10 +76,16 @@ export default ({ config, db }) =>
         .catch(({ message }) => res.status(500).send(message));
     },
   }).post('/batch', ({ body }, res) => {
-    const flashcards = body.flashcards.map((f, i) => ({
-      order: i + 1,
-      ...f,
-    }));
+    const { flashcards } = body;
+
+    let invalidParams = false;
+    flashcards.forEach((f) => {
+      if (!(f.order && f.setId)) {
+        res.status(400).send('A flashcard has invalid parameters!');
+        invalidParams = true;
+      }
+    });
+    if (invalidParams) return;
 
     let query = 'insert into flashcards ("setId", frontside, backside, "order") values ';
     flashcards.forEach((f, i) => {
@@ -83,7 +94,10 @@ export default ({ config, db }) =>
     query = query.slice(0, -2);
     query += ' returning *';
 
-    const queryParams = flashcards.reduce((a, f) => [...a, ...Object.values(f)], []);
+    const queryParams = flashcards.reduce(
+      (a, f) => [...a, f.setId, f.frontside, f.backside, f.order],
+      [],
+    );
 
     db
       .query(query, queryParams)
