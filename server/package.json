@@ -4,12 +4,12 @@
   "description": "The backend for a basic flashcards app",
   "main": "dist",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
+    "dev": "cross-env NODE_ENV=development nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
     "prestart": "npm run -s build",
-    "migrate": "DATABASE_URL=postgres://postgres:@localhost:5432/flashcards node-pg-migrate",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --exit"
+    "migrate": "cross-env DATABASE_URL=postgres://postgres:@localhost:5432/flashcards node-pg-migrate",
+    "test": "cross-env NODE_ENV=test mocha --compilers js:babel-core/register --exit"
   },
   "repository": "https://github.com/jhonnold/flashcards",
   "author": "Jay Honnold",
@@ -31,6 +31,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^4.1.2",
+    "cross-env": "^5.1.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
