@@ -11,5 +11,10 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld,
     },
+    {
+    	path: '/sets/new',
+    	name: 'New Set',
+    	component: NewSets
+    }
   ],
 });
