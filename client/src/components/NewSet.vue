@@ -53,12 +53,13 @@
 
   .input-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: baseline;
     padding-top: 60px;
   
     .input-section {
-      padding: 0 80px; 
+      padding-right: 45px;
+      padding-left: 100px; 
 
       .sub-header {
         font-size: 26px;
@@ -67,7 +68,8 @@
       }
 
       input, textarea {
-        border: 2px solid #000;
+        background: #93e5ab;
+        border: 2px solid #00241b;
         border-radius: 4px;
         padding: 15px 20px;
         font: 500 22px 'Helvetica';
@@ -75,24 +77,25 @@
 
         &:focus {
           margin-bottom: 2px;
-          box-shadow: 0 3px 3px #000;
+          box-shadow: 1px 3px 3px #2c4251;
         }
       }
     }
   }
 
   .submit-btn {
+    background: #93e5ab;
     display: inline-block;
     cursor: pointer;
     font: 26px 'Helvetica';
     padding: 10px 30px;
     border-radius: 5px;
-    border: 2px solid #000;
+    border: 2px solid #00241b;
     transition: all .3s ease-in-out;
 
     &:hover {
       margin-bottom: 2px;
-      box-shadow: 0 3px 3px #000;
+      box-shadow: 1px 3px 3px #2c4251;
     }
   }
 </style>
