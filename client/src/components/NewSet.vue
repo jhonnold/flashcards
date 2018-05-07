@@ -20,7 +20,7 @@
         <div class="sub-header">
           Enter a Description of the Set
         </div>
-        <textarea v-model="Description" placeholder="Set's Description"></textarea>
+        <textarea v-model="description" placeholder="Set's Description"></textarea>
       </div>
     </div>
     <div class="submit-btn">
@@ -30,7 +30,16 @@
 </template>
 
 <script>
-  
+  import axios from 'axios'
+
+  export default {
+
+    methods: {
+      createSet: (event) => {
+
+      }
+    }
+  }
 </script>
 
 <style lang="less" scoped>
