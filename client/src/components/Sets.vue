@@ -4,7 +4,7 @@
     <div class="creator" v-model="creator">{{ creator }} created this set</div>
     <div class="description" v-model="description">{{ description }}</div>
     <div class="btn-wrap">
-      <div class="btn">DELETE</div>
+      <div class="btn" @click="deleteSet">DELETE</div>
       <div class="btn">CREATE FLASHCARD</div>
     </div>
   </div>
@@ -39,7 +39,14 @@
           });
       },
       deleteSet: function() {
-
+        var setId = this.$route.params.id;
+        axios.delete('http://localhost:8080/api/sets/' + setId)
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     }
   }
