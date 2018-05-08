@@ -32,8 +32,6 @@
 <script>
  	import axios from 'axios'
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   export default {
     name: 'NewSet',
     data() {
@@ -58,19 +56,6 @@
           console.log(error);
         });
       }
-=======
-=======
->>>>>>> Stashed changes
- 	export default {
-
-		methods: {
-	   	createSet: (event) => {
-
-    	}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
   }
 </script>
