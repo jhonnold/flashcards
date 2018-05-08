@@ -17,6 +17,11 @@ export default new Router({
     	path: '/sets/new',
     	name: 'New Set',
     	component: NewSets
+    },
+    {
+      path: 'sets/:id',
+      name: 'Set',
+      component: Sets
     }
   ],
 });
