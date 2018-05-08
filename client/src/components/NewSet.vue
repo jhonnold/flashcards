@@ -23,7 +23,7 @@
         <textarea v-model="description" placeholder="Set's Description"></textarea>
       </div>
     </div>
-    <div class="submit-btn" v-on:click="createSet">
+    <div class="btn" v-on:click="createSet">
       Submit
     </div>
   </div>
@@ -110,7 +110,7 @@
     }
   }
 
-  .submit-btn {
+  .btn {
     background: #93e5ab;
     display: inline-block;
     cursor: pointer;
