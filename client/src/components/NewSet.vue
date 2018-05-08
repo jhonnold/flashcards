@@ -30,8 +30,9 @@
 </template>
 
 <script>
-  import axios from 'axios'
+ 	import axios from 'axios'
 
+<<<<<<< Updated upstream
   export default {
     name: 'NewSet',
     data() {
@@ -56,6 +57,14 @@
           console.log(error);
         });
       }
+=======
+ 	export default {
+
+		methods: {
+	   	createSet: (event) => {
+
+    	}
+>>>>>>> Stashed changes
     }
   }
 </script>
@@ -66,10 +75,6 @@
     margin: 0;
     overflow-x: hidden;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  }
-
-  #app img {
-    display: none;
   }
 
   .header {
@@ -83,10 +88,10 @@
     justify-content: center;
     align-items: baseline;
     padding-top: 60px;
-  
+ 
     .input-section {
       padding-right: 45px;
-      padding-left: 100px; 
+      padding-left: 100px;
 
       .sub-header {
         font-size: 26px;
