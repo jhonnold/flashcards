@@ -23,7 +23,7 @@
         <textarea v-model="description" placeholder="Set's Description"></textarea>
       </div>
     </div>
-    <div class="submit-btn">
+    <div class="submit-btn" v-on:click="createSet">
       Submit
     </div>
   </div>
@@ -34,9 +34,28 @@
 
   export default {
 
+    name: 'NewSet',
+    data() {
+      return {
+        creator: '',
+        name: '',
+        description: ''
+      }
+    },
     methods: {
-      createSet: (event) => {
-
+      createSet: function() {
+        axios.post('http://localhost:8080/api/sets', {
+          creator: this.creator,
+          name: this.name,
+          description: this.description
+        })
+        .then(function (response) {
+          console.log(response.id);
+          // window.location.href = '/sets/' + response.id;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       }
     }
   }
@@ -84,7 +103,7 @@
         font: 500 22px 'Helvetica';
         transition: all .3s ease-in-out;
 
-        &:focus {
+        &:focus, &:hover {
           margin-bottom: 2px;
           box-shadow: 1px 3px 3px #2c4251;
         }
