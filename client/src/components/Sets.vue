@@ -88,7 +88,7 @@
       border-radius: 5px;
       border: 2px solid #00241b;
       transition: all .3s ease-in-out;
-      margin: 30px 30px 2px;
+      margin: 50px 30px 2px;
 
       &:hover {
         margin-bottom: 2px;
