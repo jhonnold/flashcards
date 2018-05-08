@@ -50,8 +50,8 @@
           description: this.description
         })
         .then(function (response) {
-          console.log(response.id);
-          // window.location.href = '/sets/' + response.id;
+          console.log(response.data.id);
+          window.location.href = '/sets/' + response.data.id;
         })
         .catch(function (error) {
           console.log(error);
