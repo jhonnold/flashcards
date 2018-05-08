@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
-import NewSets from '@/components/NewSet'
+import NewSets from '@/components/NewSet';
+import Sets from '@/components/Sets';
 
 Vue.use(Router);
 
@@ -16,12 +17,12 @@ export default new Router({
     {
     	path: '/sets/new',
     	name: 'New Set',
-    	component: NewSets
+    	component: NewSets,
     },
     {
-      path: 'sets/:id',
+      path: '/sets/:id',
       name: 'Set',
-      component: Sets
+      component: Sets,
     }
   ],
 });
