@@ -12,7 +12,7 @@
 
 <script>
   import axios from 'axios';
-  // TODO get the values of creator/name/description depending on the set id
+  
   export default {
     name: 'Sets',
     data() {
@@ -22,10 +22,12 @@
         description: ''
       }
     },
+    // LOADS DATA FROM GET REQUEST BEFORE PAGE LOAD
     beforeMount() {
       this.getSet()
     },
     methods: {
+      // GETS THE DATA FOR THE CURRENT SET
       getSet: function() {
         var setId = this.$route.params.id;
         axios.get('http://localhost:8080/api/sets/' + setId)
@@ -38,6 +40,7 @@
             console.log(error)
           });
       },
+      // DELETES THE CURRENT SET
       deleteSet: function() {
         var setId = this.$route.params.id;
         axios.delete('http://localhost:8080/api/sets/' + setId)
@@ -50,7 +53,6 @@
       }
     }
   }
-  // TODO add button to delete set 
   // TODO add button to create flashcards
 </script>
 
