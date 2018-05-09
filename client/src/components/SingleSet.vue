@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="set-name" v-model="name">{{ name }}</div>
-    <div class="creator" v-model="creator">{{ creator }} created this set</div>
+    <div class="creator" v-model="creator"><span>{{ creator }}</span> created this set</div>
     <div class="description" v-model="description">{{ description }}</div>
     <div class="btn-wrap">
       <div class="btn" @click="deleteSet">DELETE</div>
@@ -12,9 +12,9 @@
 
 <script>
   import axios from 'axios';
-  
+
   export default {
-    name: 'Sets',
+    name: 'SingleSet',
     data() {
       return {
         creator: '',
@@ -46,6 +46,7 @@
         axios.delete('http://localhost:8080/api/sets/' + setId)
           .then((response) => {
             console.log(response.data);
+            window.location.href = '/sets';
           })
           .catch((error) => {
             console.log(error);
@@ -73,6 +74,10 @@
   .creator {
     font: 36px 'Helvetica';
     margin: 35px 0 40px;
+
+    span {
+      text-decoration: underline;
+    }
   }
 
   .description {
