@@ -30,95 +30,98 @@
 </template>
 
 <script>
- 	import axios from 'axios'
+import axios from 'axios';
 
-  export default {
-    name: 'NewSet',
-    data() {
-      return {
-        creator: '',
-        name: '',
-        description: ''
-      }
-    },
-    methods: {
-      createSet: function() {
-        axios.post('http://localhost:8080/api/sets', {
+export default {
+  name: 'NewSet',
+  data() {
+    return {
+      creator: '',
+      name: '',
+      description: '',
+    };
+  },
+  methods: {
+    createSet() {
+      axios
+        .post('http://localhost:8080/api/sets', {
           creator: this.creator,
           name: this.name,
-          description: this.description
+          description: this.description,
         })
-        .then(function (response) {
-          console.log(response.data.id);
-          window.location.href = '/sets/' + response.data.id;
+        .then(({ data }) => {
+          console.log(data.id);
+          // window.location.href = '/sets/' + response.data.id;
+          this.$router.push({ name: 'Single Set', params: { id: data.id } });
         })
-        .catch(function (error) {
-          console.log(error);
-        });
-      }
-    }
-  }
+        .catch(error => console.log(error));
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
-  body, html {
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  }
+body,
+html {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
 
-  .header {
-    text-align: center;
-    font-weight: 700;
-    font-size: 35px;
-  }
+.header {
+  text-align: center;
+  font-weight: 700;
+  font-size: 35px;
+}
 
-  .input-container {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    padding-top: 60px;
- 
-    .input-section {
-      padding-right: 45px;
-      padding-left: 100px;
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 60px;
 
-      .sub-header {
-        font-size: 26px;
-        font-family: 'Helvetica';
-        padding-bottom: 15px;
-      }
+  .input-section {
+    padding-right: 45px;
+    padding-left: 100px;
 
-      input, textarea {
-        background: #93e5ab;
-        border: 2px solid #00241b;
-        border-radius: 4px;
-        padding: 15px 20px;
-        font: 500 22px 'Helvetica';
-        transition: all .3s ease-in-out;
+    .sub-header {
+      font-size: 26px;
+      font-family: 'Helvetica';
+      padding-bottom: 15px;
+    }
 
-        &:focus, &:hover {
-          margin-bottom: 2px;
-          box-shadow: 1px 3px 3px #2c4251;
-        }
+    input,
+    textarea {
+      background: #93e5ab;
+      border: 2px solid #00241b;
+      border-radius: 4px;
+      padding: 15px 20px;
+      font: 500 22px 'Helvetica';
+      transition: all 0.3s ease-in-out;
+
+      &:focus,
+      &:hover {
+        margin-bottom: 2px;
+        box-shadow: 1px 3px 3px #2c4251;
       }
     }
   }
+}
 
-  .btn {
-    background: #93e5ab;
-    display: inline-block;
-    cursor: pointer;
-    font: 26px 'Helvetica';
-    padding: 10px 30px;
-    border-radius: 5px;
-    border: 2px solid #00241b;
-    transition: all .3s ease-in-out;
+.btn {
+  background: #93e5ab;
+  display: inline-block;
+  cursor: pointer;
+  font: 26px 'Helvetica';
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 2px solid #00241b;
+  transition: all 0.3s ease-in-out;
 
-    &:hover {
-      margin-bottom: 2px;
-      box-shadow: 1px 3px 3px #2c4251;
-    }
+  &:hover {
+    margin-bottom: 2px;
+    box-shadow: 1px 3px 3px #2c4251;
   }
+}
 </style>

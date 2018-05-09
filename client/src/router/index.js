@@ -15,14 +15,14 @@ export default new Router({
       component: HelloWorld,
     },
     {
-    	path: '/sets/new',
-    	name: 'New Set',
-    	component: NewSet,
+      path: '/sets/new',
+      name: 'New Set',
+      component: NewSet,
     },
     {
       path: '/sets/:id',
       name: 'Single Set',
       component: SingleSet,
-    }
+    },
   ],
 });
