@@ -23,19 +23,22 @@ export default {
     };
   },
   // LOADS DATA FROM GET REQUEST BEFORE PAGE LOAD
-  beforeMount: function() {
-    // GETS THE DATA FOR THE CURRENT SET
-    const setId = this.$route.params.id;
-    axios
-      .get(`http://localhost:8080/api/sets/${setId}`)
-      .then(({ data }) => {
-        this.creator = data.creator;
-        this.name = data.name;
-        this.description = data.description;
-      })
-      .catch(error => console.log(error));
+  beforeMount() {
+    this.getSet();
   },
   methods: {
+    // GETS THE DATA FOR THE CURRENT SET
+    getSet() {
+      const setId = this.$route.params.id;
+      axios
+        .get(`http://localhost:8080/api/sets/${setId}`)
+        .then(({ data }) => {
+          this.creator = data.creator;
+          this.description = data.description;
+          this.name = data.name;
+        })
+        .catch(error => console.log(error));
+    },
     // DELETES THE CURRENT SET
     deleteSet() {
       const setId = this.$route.params.id;
